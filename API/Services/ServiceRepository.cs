@@ -28,14 +28,14 @@ namespace API.Services
             report.Percent = query.Percent;
             report.Query = query.QueryID;
 
-            if(query.QueryID == null) { return report; }
-
-            report.Result = new User
+            if(query.QueryID != Guid.Empty) 
             {
-                ID = query.UserID,
-                CountSignIn = query.CountSignIn
-            };
-
+                report.Result = new User
+                {
+                    ID = query.UserID,
+                    CountSignIn = query.CountSignIn
+                }; 
+            }
             return report;
         }
 
@@ -57,7 +57,7 @@ namespace API.Services
         {
             int delay = _configuration.GetValue<int>("Delay");
             int frequency = _configuration.GetValue<int>("Frequncy");
-            int koef = frequency / delay * 100;
+            float koef = (float)frequency / (float)delay * 100;
             var queries = await _repository.GetListQuery();
             foreach (var query in queries.Where(query => query.Percent <= 100))
             {

@@ -7,7 +7,7 @@ namespace API.Entities
     {
         public Guid QueryID { get; set; }
         public Guid UserID { get; set; }
-        public int Percent  { get; set; }
+        public double Percent  { get; set; }
         public int CountSignIn  { get; set; }
     }
 }

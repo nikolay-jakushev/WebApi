@@ -6,7 +6,7 @@ namespace API.Entities
     public class ReportInfo
     {
         public Guid Query { get; set; }
-        public int Percent { get; set; }
+        public double Percent { get; set; }
         public User Result { get; set; }
     }
 }

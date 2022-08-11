@@ -34,9 +34,9 @@ namespace API.Services
             return Task.CompletedTask;
         }
 
-        private async void UpdatePercents(object o)
+        private  void UpdatePercents(object o)
         {
-            await _service.Update();
+            _service.Update();
         }
 
     }

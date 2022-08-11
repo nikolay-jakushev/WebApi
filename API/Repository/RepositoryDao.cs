@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
@@ -30,14 +31,14 @@ namespace API.Repository
 
         public async Task<IEnumerable<Query>> GetListQuery()
         {
-            var result = await _context.Query.ToListAsync();
-            return result;
+            return await _context.Query.ToListAsync();
         }
 
         public async Task UpdateRequest(Guid queryGuid, Query reportInfo)
         {
-            Query queryToUpdate = await _context.Query.FirstOrDefaultAsync(q => q.QueryID == queryGuid);
-            reportInfo = queryToUpdate;
+            Query query = await _context.Query.FirstOrDefaultAsync(q => q.QueryID == queryGuid);
+            query = reportInfo;
+             _context.Update(query);
             await _context.SaveChangesAsync();
         }
     }
