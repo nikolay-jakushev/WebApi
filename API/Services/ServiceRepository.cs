@@ -28,14 +28,14 @@ namespace API.Services
             report.Percent = query.Percent;
             report.Query = query.QueryID;
 
-            if(query.QueryID != Guid.Empty) 
-            {
-                report.Result = new User
+            if(query.Percent != 100) { return report; }
+            
+            report.Result = new User
                 {
                     ID = query.UserID,
                     CountSignIn = query.CountSignIn
-                }; 
-            }
+                };
+
             return report;
         }
 
